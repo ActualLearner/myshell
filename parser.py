@@ -5,6 +5,7 @@ import os
 def parse(data):
     temp = data.split(" ")
     arr = []
+    curr = []
 
     for item in temp:
         if not item:
@@ -13,10 +14,17 @@ def parse(data):
         if item[0] == "$":
             var = os.environ.get(item[1:])
             if var:
-                arr.append(var)
+                curr.append(var)
 
             continue
+        elif item == "|":
+            arr.append(curr[:])
+            curr = []
+            continue
 
-        arr.append(item)
+        curr.append(item)
+
+    if curr:
+        arr.append(curr[:])
 
     return arr

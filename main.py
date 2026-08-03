@@ -1,5 +1,5 @@
 #!/bin/python3
-from execute import execute
+from execute import execute_all
 from parser import parse
 import os
 import socket
@@ -22,6 +22,6 @@ while True:
         continue
 
     try:
-        execute(parsed_data)
+        execute_all(parsed_data)
     except OSError as e:
         print("Error executing commnd", e)
